@@ -10,13 +10,14 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => { 
-        cy.visit('/login.html')
-        cy.get('#email').type(email)
-        cy.get('#password').type(password)
-        cy.get('#login-btn').click()
-        cy.get('h1').should('contain', 'Painel Administrativo')
- })
+Cypress.Commands.add('login', (email, password) => {
+    cy.get('#email').type(email);
+    cy.get('#password').type(password);
+});
+
+Cypress.Commands.add('clicarLogin', () => {
+    cy.get('#login-btn').click();
+});
 //
 //
 // -- This is a child command --
@@ -29,11 +30,3 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('adicionarLivro', (titulo, autor, categoria, copias)=>{
-        cy.get('.btn-success').click()
-        cy.get('#book-title').clear().type(titulo, {force:true})
-        cy.get('#book-author').clear().type(autor)
-        cy.get('#book-category').select(categoria)
-        cy.get('#book-copies').clear().type(copias)
-        cy.get('#save-book-btn').click()
-})
