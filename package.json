@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Exemplo de modelo com cypress e cucumber",
   "main": "index.js",
- "scripts": {
-  "test": "npx cypress run",
-  "report:merge": "mochawesome-merge cypress/results/*.json -o cypress/results/mochawesome.json",
-  "report:generate": "marge cypress/results/mochawesome.json -o cypress/results",
-  "test:report": "npm run test && npm run report:merge && npm run report:generate"
-},
+  "scripts": {
+    "test": "npx cypress run",
+    "report:merge": "mochawesome-merge \"mochawesome-report/*.json\" -o mochawesome-report/mochawesome.json",
+    "report:generate": "marge mochawesome-report/mochawesome.json -o mochawesome-report -f index",
+    "test:report": "npm run test && npm run report:merge && npm run report:generate",
+    "ci": "start-server-and-test \"cd ../hub-de-leitura-integrado && npm start\" http://localhost:3000 test:report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "esbuild": "^0.25.10",
     "mochawesome": "^8.0.1",
     "mochawesome-merge": "^5.1.1",
-    "mochawesome-report-generator": "^6.3.2"
+    "mochawesome-report-generator": "^6.3.2",
+    "start-server-and-test": "^3.0.12"
   }
 }
