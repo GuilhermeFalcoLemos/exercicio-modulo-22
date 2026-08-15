@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Exemplo de modelo com cypress e cucumber",
   "main": "index.js",
-  "scripts": {
-    "test": "npx cypress run"
-  },
+ "scripts": {
+  "test": "npx cypress run",
+  "report:merge": "mochawesome-merge cypress/results/*.json -o cypress/results/mochawesome.json",
+  "report:generate": "marge cypress/results/mochawesome.json -o cypress/results",
+  "test:report": "npm run test && npm run report:merge && npm run report:generate"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,6 +17,9 @@
     "@badeball/cypress-cucumber-preprocessor": "^23.2.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.6",
     "cypress": "^14.5.4",
-    "esbuild": "^0.25.10"
+    "esbuild": "^0.25.10",
+    "mochawesome": "^8.0.1",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
   }
 }
